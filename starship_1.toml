@@ -1,0 +1,41 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Sem linha em branco antes do prompt
+add_newline = false
+
+# Ordem e separadores dos segmentos (estilo powerline rainbow)
+format = """
+[](fg:#e93b6f)\
+$username\
+[](fg:#e93b6f bg:#f7941e)\
+$directory\
+[](fg:#f7941e bg:#7cb518)\
+[](fg:#7cb518 bg:#00b4d8)\
+[](fg:#00b4d8 bg:#aab4f0)\
+$time\
+[](fg:#aab4f0)\
+$line_break\
+$character"""
+
+[username]
+show_always = true
+style_user = "bg:#e93b6f fg:white"
+style_root = "bg:#e93b6f fg:white"
+format = '[  $user ]($style)'
+
+[directory]
+style = "bg:#f7941e fg:#1c1c1c"
+format = "[ $path ]($style)"
+truncation_length = 8
+truncate_to_repo = false
+use_os_path_sep = true
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bg:#aab4f0 fg:#1c1c1c"
+format = '[   $time ]($style)'
+
+[character]
+success_symbol = "[)](bold #7cb518)"
+error_symbol = "[)](bold #e93b6f)"

@@ -1,0 +1,22 @@
+# Escolha a fonte: Meslo, FiraCode, JetBrainsMono, CascadiaCode, Hack...
+$font = "Meslo"
+$url  = "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/$font.zip"
+$tmp  = "$env:TEMP\$font"
+
+# Baixar e extrair
+Invoke-WebRequest -Uri $url -OutFile "$tmp.zip"
+Expand-Archive -Path "$tmp.zip" -DestinationPath $tmp -Force
+
+# Instalar por usuário
+$fontsFolder = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+New-Item -ItemType Directory -Force -Path $fontsFolder | Out-Null
+
+Get-ChildItem -Path $tmp -Recurse -Include *.ttf,*.otf | ForEach-Object {
+    $dest = Join-Path $fontsFolder $_.Name
+    Copy-Item $_.FullName $dest -Force
+    New-ItemProperty `
+        -Path "HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" `
+        -Name "$($_.BaseName) (TrueType)" -Value $dest -PropertyType String -Force | Out-Null
+}
+
+Write-Host "Fonte $font Nerd Font instalada para o usuário atual." -ForegroundColor Green
