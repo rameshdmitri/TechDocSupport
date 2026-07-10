@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "SQL Server - DWH_TRANSVERSAL": {
+      "commandName": "Project",
+      "commandLineArgs": "--sql-server SRVSQL01 --sql-port 1433 --sql-database Dwh -o C:\\sgi\\saida -p \"dbo.usp_ExportarProfileTransaction\" \"dbo.usp_ExportarPermissionData\" -f \"Profile x Transaction DWH Transversal.csv\" \"BR DWH TRANSVERSALPermissionData.csv\" -l \"layouts/profile_transaction.layout.json\" \"layouts/permission_data.layout.json\""
+    },
+    "Oracle - DWH_TRANSVERSAL": {
+      "commandName": "Project",
+      "commandLineArgs": "--oracle-host srv-ora --oracle-port 1521 --oracle-sid DWH --oracle-user app --oracle-dpapi-file C:\\sgi\\secrets\\ora.dat -o C:\\sgi\\saida -p \"PKG_DWH.EXPORTAR_AUTH_EVENTS\" -f \"AuthenticationEvents.csv\" -l \"layouts/authentication_events.layout.json\""
+    },
+    "--help": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    }
+  }
+}
